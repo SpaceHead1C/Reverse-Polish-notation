@@ -4,10 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class VariablesMap {
     private Map<String, Double> map;
@@ -66,5 +63,15 @@ public class VariablesMap {
         }
 
         return map;
+    }
+
+    public boolean checkContentMatch(HashSet<String> variables) {
+        for (String variablename : variables) {
+            if (!map.containsKey(variablename)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
