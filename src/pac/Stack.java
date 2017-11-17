@@ -2,6 +2,11 @@ package pac;
 
 import java.util.Iterator;
 
+/** Class Stack
+ * Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne
+ * <a href='https://algs4.cs.princeton.edu/13stacks/index.php#1.2'>1.3   Bags, Queues, and Stacks</a>
+ */
+
 public class Stack<T> implements Iterable<T> {
     private Node first;
     private int n;
