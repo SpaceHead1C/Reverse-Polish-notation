@@ -63,7 +63,7 @@ public class OperandValidator {
                         rDegree *= 10;
                     } else {
                         currentState = State.E;
-                        message = "Unexpected simbol '" + token + "' in '" + expression + "'";
+                        message = "Unexpected symbol '" + token + "' in '" + expression + "'";
 
                         return currentState;
                     }
@@ -80,7 +80,7 @@ public class OperandValidator {
                         rDegree *= 10;
                     } else {
                         currentState = State.E;
-                        message = "Unexpected simbol '" + token + "' in '" + expression + "'";
+                        message = "Unexpected symbol '" + token + "' in '" + expression + "'";
 
                         return currentState;
                     }
@@ -90,7 +90,7 @@ public class OperandValidator {
                         sbParam.append(token);
                     } else {
                         currentState = State.E;
-                        message = "Unexpected simbol '" + token + "' in '" + expression + "'";
+                        message = "Unexpected symbol '" + token + "' in '" + expression + "'";
 
                         return currentState;
                     }
@@ -101,7 +101,7 @@ public class OperandValidator {
                         rDegree *= 10;
                     } else {
                         currentState = State.E;
-                        message = "Unexpected simbol '" + token + "' in '" + expression + "'";
+                        message = "Unexpected symbol '" + token + "' in '" + expression + "'";
 
                         return currentState;
                     }
