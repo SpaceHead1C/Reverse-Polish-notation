@@ -33,7 +33,7 @@ public class RPN {
             currentToken = tokenizer.nextToken();
 
             if (!tokenizer.hasMoreTokens() && isOperator(currentToken)) {
-                throw new ParsingToPRNException("Uncorrect expression.");
+                throw new ParsingToPRNException("Incorrect expression.");
             }
             if (currentToken.equals(" ")) {
                 continue;
@@ -120,8 +120,56 @@ public class RPN {
         }
     }
 
-    public double evaluate() {
-        return 0D;
+    public double evaluate(VariablesMap variablesMap) throws ExceptionInInitializerError, InputMismatchException, ArithmeticException {
+        if (!ready) {
+            throw new ExceptionInInitializerError("Postfix expression does not set");
+        }
+//        if (check content match){
+//            throw new InputMismatchException("message");
+//        }
+
+        HashMap<String, Double> map = variablesMap.getMap();
+        Stack<Double> stack = new Stack<>();
+        Double a, b;
+        for (PartOfRPN operand : postfix) {
+            switch (operand.getTypeOfPart()) {
+                case CONSTANT:
+                    stack.push(Double.valueOf(operand.getValue()));
+                    break;
+                case VARIABLE:
+                    stack.push(map.get(operand.getValue()));
+                    break;
+                case OPERATOR:
+                    switch (operand.getValue()) {
+                        case "+":
+                            stack.push(stack.pop() + stack.pop());
+                            break;
+                        case "-":
+                            b = stack.pop();
+                            a = stack.pop();
+                            stack.push(a - b);
+                            break;
+                        case "*":
+                            stack.push(stack.pop() * stack.pop());
+                            break;
+                        case "/":
+                            b = stack.pop();
+                            a = stack.pop();
+                            try {
+                                stack.push(a / b);
+                            } catch (ArithmeticException e) {
+                                throw e;
+                            }
+                            break;
+                        case "^":
+                            stack.push(Math.pow(stack.pop(), stack.pop()));
+                            break;
+                    }
+                    break;
+            }
+        }
+
+        return stack.pop();
     }
 
     public String getInfixExpression() {
