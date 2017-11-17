@@ -124,9 +124,9 @@ public class RPN {
         if (!ready) {
             throw new ExceptionInInitializerError("Postfix expression does not set");
         }
-//        if (check content match){
-//            throw new InputMismatchException("message");
-//        }
+        if (!variablesMap.checkContentMatch(getVariables())) {
+            throw new InputMismatchException("Not match map and rpn variables");
+        }
 
         HashMap<String, Double> map = variablesMap.getMap();
         Stack<Double> stack = new Stack<>();
